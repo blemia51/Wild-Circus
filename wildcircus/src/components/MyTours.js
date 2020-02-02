@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import Moment from 'react-moment'
 import NavFooter from "./NavFooter"
 import Qrticket from './Qrticket'
-import Fade from 'react-reveal/Fade';
+import Fade from 'react-reveal/Fade';//react reveal
 
 //import del from '../img/delete.png'
 
@@ -16,7 +16,8 @@ class MyTours extends Component {
   constructor(props) {
     super(props)
     this.state = {
-       tour_user: []
+       tour_user: [],
+       user:[]
     }
   }
   
@@ -43,6 +44,29 @@ class MyTours extends Component {
     })
   })
   .catch()
+
+  fetch(`http://localhost:8000/api/users/${this.props.iduser}`,
+  {
+    method:'GET',
+    headers:{
+      'Authorization':  'Bearer '  +  this.props.token,
+      'Content-Type':  'application/json'
+    }
+  })
+  .then(res => {
+    if(!res.ok) {
+      //this.props.history.push('/userconnexion')
+    }
+    return res.json()
+  })
+  .then(data => {
+    console.log(data)
+    this.setState({
+      user: data[0],
+  })
+})
+.catch()
+
   }
  
   // handleDelete (id)  {
@@ -67,7 +91,7 @@ class MyTours extends Component {
           <Moment format="DD/MM/YYYY" style={{display:'flex', justifyContent:'center'}}>{res.date}</Moment>
         </div>
         <p>{res.city}</p>
-        <Qrticket iduser={this.props.iduser} city={res.city} tickets={res.ticket} />
+        <Qrticket  nickname={this.state.user.nickname} iduser={this.props.iduser} city={res.city} tickets={res.ticket} />
       </div></Fade>}))}
 
            

@@ -3,10 +3,10 @@ const QRCode = require('qrcode.react');
 
 
 function Qrticket(props) {
-  console.log(props.ticket)
+  
   return (
     <div>
-       <QRCode value={props.city}/>
+       <QRCode value = {props.nickname + ' you have '+ props.tickets + ' tickets  for the tour in ' + props.city}/>
 
     </div>
   )

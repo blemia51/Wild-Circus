@@ -85,6 +85,20 @@ app.post('/api/users', (req, res) => {
   });
 });
 
+// GET ONE USER
+
+app.get('/api/users/:iduser', passport.authenticate('jwt', { session:  false }), (req, res) => {
+  const iduser = req.params.iduser
+  console.log(iduser)
+  connection.query('SELECT nickname from users WHERE iduser = ?',[iduser], (err, results) => {
+    if (err) {
+      res.status(500).send('Erreur lors de la récupération de l\'utilisateur');
+    } else {
+      res.json(results);
+    }
+  });
+});
+
 // GET TOURS
 app.get('/api/tours', passport.authenticate('jwt', { session:  false }), (req, res) => {
   connection.query('SELECT * from tours', (err, results) => {
