@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom'
 import Moment from 'react-moment'
 import NavFooter from "./NavFooter"
 import Qrticket from './Qrticket'
+import Fade from 'react-reveal/Fade';
+
 //import del from '../img/delete.png'
 
 //import axios from 'axios';
@@ -58,15 +60,15 @@ class MyTours extends Component {
   render() {
     return (
       <div className='tour-cards'>
-      <div className='title-travel-cards'><h2>My Tours</h2></div>
+      <Fade left><div className='title-travel-cards'><h2>My Tours</h2></div></Fade>
       {React.Children.toArray(this.state.tour_user.map(res =>{
-        return <div className='liste-tours'>
+        return <Fade left><div className='liste-tours'>
         <div>
           <Moment format="DD/MM/YYYY" style={{display:'flex', justifyContent:'center'}}>{res.date}</Moment>
         </div>
         <p>{res.city}</p>
         <Qrticket iduser={this.props.iduser} city={res.city} tickets={res.ticket} />
-      </div>}))}
+      </div></Fade>}))}
 
            
         <NavFooter/>
