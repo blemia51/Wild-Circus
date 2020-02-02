@@ -100,11 +100,17 @@ margin: auto;
   flex-direction: column;
   align-items: center;
   margin: auto;
+  padding-bottom: 30%;
 }
 .div-add-user {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: auto;
+  padding-bottom: 30%;
 }
-
+.perf-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}

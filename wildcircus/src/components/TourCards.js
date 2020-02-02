@@ -11,7 +11,8 @@ class TourCards extends Component {
     super(props)
     this.state = {
       tours:[],
-      ticket: ''
+      ticket: '',
+      user:[]
     }
   }
 
@@ -37,6 +38,9 @@ class TourCards extends Component {
   })
   .catch()
   }
+  
+
+
 
    numberTicket= (e)=>{
     this.setState({ticket: e.target.value})
@@ -52,7 +56,7 @@ class TourCards extends Component {
 
 
   render() {
-    console.log(this.state.tours)
+    console.log(this.state.user.nickname)
     return (
       <div className='tour-cards'>
         

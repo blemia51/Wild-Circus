@@ -5,8 +5,8 @@ import FormUsers from './components/FormUsers'
 import TourCards from './components/TourCards'
 import Nav from './components/Nav'
 import MyTours from './components/MyTours'
+import Performances from './components/Performances'
 //import Reservation from './components/Reservation'
-import Qrticket from './components/Qrticket'
 import './App.css';
 import NavFooter from './components/NavFooter'
 
@@ -15,6 +15,7 @@ function App() {
   return (
     <div className="App">
       <Nav />
+      <Performances />
       <Switch>
         <Route path="/formusers" component={FormUsers}/>
         <Route path="/userconnexion" component={UserConnexion}/>
