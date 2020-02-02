@@ -1,24 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
+import React from 'react'
+import { Switch, Route } from 'react-router-dom'
+import UserConnexion from './components/UserConnexion'
+import FormUsers from './components/FormUsers'
+import TourCards from './components/TourCards'
+import Nav from './components/Nav'
+import MyTours from './components/MyTours'
+//import Reservation from './components/Reservation'
+import Qrticket from './components/Qrticket'
 import './App.css';
+import NavFooter from './components/NavFooter'
+
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Nav />
+      <Switch>
+        <Route path="/formusers" component={FormUsers}/>
+        <Route path="/userconnexion" component={UserConnexion}/>
+        <Route exact path="/tourcards" component={TourCards}/>
+        <Route exact path="/mytours" component={MyTours}/>
+      </Switch>
+      <NavFooter /> 
     </div>
   );
 }

@@ -61,11 +61,70 @@ app.post('/api/login', function(req, res)  {
     const token = jwt.sign({iduser}, key, {expiresIn: 60*60});
     console.log(token)
     return res.json({
-      user: {userID},
+      user: {iduser},
       token
     })
  })(req, res)
 })
+
+//POST USERS
+app.post('/api/users', (req, res) => {
+  const {nickname, email, password}  = req.body
+  const hash = bcrypt.hashSync(password, 10, (err, hash) => {
+    return hash
+  });
+  formData = {nickname, email, password: hash};
+  console.log(formData)
+    connection.query('INSERT INTO users (nickname, email, password) VALUES (?,?,?)', [formData.nickname, formData.email, formData.password], (err, results) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send("Erreur lors de la sauvegarde d'un utilisateur");
+    } else {
+      res.sendStatus(200);
+    }
+  });
+});
+
+// GET TOURS
+app.get('/api/tours', passport.authenticate('jwt', { session:  false }), (req, res) => {
+  connection.query('SELECT * from tours', (err, results) => {
+    if (err) {
+      res.status(500).send('Erreur lors de la récupération des spectacles');
+    } else {
+      res.json(results);
+    }
+  });
+});
+
+// POST TOUR RESERVATION
+app.post('/api/tour_user', (req, res) => {
+  const formData = req.body
+  console.log(formData)
+  connection.query('INSERT INTO tour_user SET ?', [formData], (err, results) => {
+
+    if (err) {
+      console.log(err);
+      res.status(500).send("Erreur lors de la reservation d'un spectacle");
+    } else {
+      res.sendStatus(200);
+    }
+  });
+});
+
+
+// GET TOUR RESERVATION
+app.get('/api/tour_user/:iduser', (req,res) => {
+  const iduser = req.params.iduser
+  console.log(iduser)
+  connection.query('SELECT * FROM tours AS t INNER JOIN tour_user AS tu ON t.idtour = tu.tourid WHERE tu.userid = ?', [iduser], (err, results) => {
+    if (err) {
+      res.status(500).send('Erreur lors de la récupération des voyages');
+    } else {
+      res.json(results);
+    }
+  })
+})
+
 
 
 // TEST

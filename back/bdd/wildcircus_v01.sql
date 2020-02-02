@@ -22,7 +22,7 @@ CREATE TABLE `tour_user`(
     `idtouruser` INT NOT NULL AUTO_INCREMENT,
     `userid` INT NOT NULL,
     `tourid` INT NOT NULL,
-    `tiket` TEXT,
+    `ticket` TEXT,
     FOREIGN KEY (`userid`) REFERENCES `users`(`iduser`),
     FOREIGN KEY (`tourid`) REFERENCES `tours`(`idtour`),
     PRIMARY KEY (`idtouruser`)
