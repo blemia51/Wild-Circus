@@ -9,6 +9,7 @@
 
 a /* Liens par défaut (non survolés) */
 {
+   font-family:'Amatic SC' ;
    text-decoration: underline;
    color: black;
    font-weight: bold;
@@ -37,6 +38,7 @@ h1, h2, h3, nav {
   position: absolute;
   top: 20px;
   right: 20px;
+  padding: 15px;
 }
 nav {
   position: absolute;
