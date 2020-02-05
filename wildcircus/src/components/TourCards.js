@@ -4,6 +4,7 @@ import '../App.css'
 //import SearchField from './SearchField'
 import { connect } from  'react-redux';
 import Reservation from './Reservation'
+import Fade from 'react-reveal/Fade';//react reveal
 //import { Link } from 'react-router-dom';
 
 class TourCards extends Component {
@@ -59,8 +60,9 @@ class TourCards extends Component {
     console.log(this.state.user.nickname)
     return (
       <div className='tour-cards'>
-        
+        <Fade left>
         <div className='title-travel-cards'><h2>tours</h2></div>
+        </Fade>
         <div className='tours-legend'>
           <p>Date</p>
           <p>Location</p>
